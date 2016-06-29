@@ -1,0 +1,23 @@
+#coding:utf8
+"""
+result :create mysqlconnect class
+author :hejian
+data   :2016-6-29
+"""
+import MySQLdb
+class Connection:
+    def __init__(self,db,host =u'',port =3306,user =u'',passwd =u'',charset =u'utf-8'):
+        self.connection =MySQLdb.connect(db =db,host =host,user =user,passwd =passwd,charset =charset)
+        self.cur =self.connection.cursor()
+
+    def execute_single(self,sql,args):
+        self.cur.execute(sql,args)
+        self.connetcion.commit()
+
+    def execute_many(self,sql,args):
+        self.cur.execute(sql,args)
+        self.connection.commit()
+
+    def close(self):
+        self.cur.close()
+        self.connection.close()
